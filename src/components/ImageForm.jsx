@@ -43,7 +43,7 @@ const ImageUpload = () => {
 
     try {
       // Cambia la URL de la API según tu configuración de backend
-      const response = await fetch("http://localhost:5000/upload", {
+      const response = await fetch("http://localhost:5000/api/images", {
         method: "POST",
         body: formData, // Enviamos el FormData con la imagen
       });
