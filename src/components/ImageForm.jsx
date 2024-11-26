@@ -6,6 +6,7 @@ const ImageUpload = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  // Cambia la imagen cuando se selecciona un archivo
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -16,22 +17,19 @@ const ImageUpload = () => {
     }
   };
 
+  // Cambia el título
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
+  // Cambia la descripción
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   };
 
+  // Manejador de la acción de submit (enviar el formulario)
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const token = localStorage.getItem("token"); // Recupera el token del localStorage
-    if (!token) {
-      alert("No estás autorizado para subir imágenes. Por favor, inicia sesión.");
-      return;
-    }
 
     if (!image) {
       alert("Por favor, selecciona una imagen para subir.");
@@ -44,16 +42,16 @@ const ImageUpload = () => {
     formData.append("image", image);
 
     try {
-      const response = await fetch("http://localhost:5000/api/images", {
+      // Cambia la URL de la API según tu configuración de backend
+      const response = await fetch("http://localhost:5000/upload", {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`, // Incluye el token en el encabezado
-        },
-        body: formData,
+        body: formData, // Enviamos el FormData con la imagen
       });
 
       if (response.ok) {
+        const responseData = await response.json();
         alert("Imagen subida con éxito!");
+        console.log("Imagen subida: ", responseData);
       } else {
         const errorData = await response.json();
         alert(`Error al subir la imagen: ${errorData.message}`);
@@ -66,38 +64,37 @@ const ImageUpload = () => {
 
   return (
     <form onSubmit={handleSubmit} className="image-upload-form">
-   <div className="funny-text">
-     Has accedido como administrador. Espero que seas Laura, Iris o al menos alguien que sabe lo que está haciendo. Mucho cuidadito, no me la líes :)
-   </div>
-   <input
-     type="text"
-     placeholder="Título"
-     value={title}
-     onChange={handleTitleChange}
-     className="input-field"
-   />
-   <input
-     type="text"
-     placeholder="Descripción"
-     value={description}
-     onChange={handleDescriptionChange}
-     className="input-field"
-   />
-   <input
-     type="file"
-     onChange={handleImageChange}
-     className="file-input"
-   />
-   <div className="last-text">
-     <h3>
-       ¿Has terminado? Revisa que no falte nada. Título, texto para el artículo, ¿has subido la foto?... Bueno, pues si está todo pulsa Terminar.
-     </h3>
-   </div>
-   <button type="submit" className="submit-button">
-     Terminar
-   </button>
- </form>
-
+      <div className="funny-text">
+        Has accedido como administrador. Espero que seas Laura, Iris o al menos alguien que sabe lo que está haciendo. Mucho cuidadito, no me la líes :)
+      </div>
+      <input
+        type="text"
+        placeholder="Título"
+        value={title}
+        onChange={handleTitleChange}
+        className="input-field"
+      />
+      <input
+        type="text"
+        placeholder="Descripción"
+        value={description}
+        onChange={handleDescriptionChange}
+        className="input-field"
+      />
+      <input
+        type="file"
+        onChange={handleImageChange}
+        className="file-input"
+      />
+      <div className="last-text">
+        <h3>
+          ¿Has terminado? Revisa que no falte nada. Título, texto para el artículo, ¿has subido la foto?... Bueno, pues si está todo pulsa Terminar.
+        </h3>
+      </div>
+      <button type="submit" className="submit-button">
+        Terminar
+      </button>
+    </form>
   );
 };
 
