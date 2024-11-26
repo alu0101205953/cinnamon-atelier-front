@@ -1,0 +1,44 @@
+.product {
+    display: flex;
+    flex-direction: column; /* Asegura que la imagen y el texto estén en columna */
+    align-items: center; /* Centra elementos horizontalmente */
+    justify-content: center; /* Centra elementos verticalmente */
+    margin: 2rem auto; /* Centra el contenedor del producto */
+    text-align: center; /* Centra el texto */
+    gap: 1rem; /* Espacio entre imagen y texto */
+}
+
+.product img {
+    width: 200px;
+    height: auto;
+    margin: 0 auto; /* Centra la imagen */
+    border: none; /* Elimina bordes */
+    box-shadow: none; /* Elimina sombras */
+    background: transparent; /* Asegura que no haya fondo */
+}
+
+.product .description {
+    max-width: 600px;
+    margin-top: 1rem;
+    color: #555; /* Ajusta el color del texto */
+}
+
+.product .description h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.product .description p {
+    font-size: 1.7rem;
+}
+
+/* Responsividad para pantallas pequeñas (opcional) */
+@media (max-width: 768px) {
+    .product {
+        padding: 1rem;
+    }
+
+    .product .description p {
+        font-size: 1.3rem;
+    }
+}

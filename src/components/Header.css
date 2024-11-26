@@ -1,0 +1,40 @@
+/* Header general */
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('../assets/fonts/AvenirNextLTPro-Regular.otf') format('opentype');
+}
+
+.header {
+    position: relative; /* Necesario para posicionar elementos dentro */
+    background-color: white;
+    color: #8B4513;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+  
+  /* Contenedor del contenido principal */
+  .header-content {
+    margin-top: 1rem;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .header p {
+    font-size: 1.7rem;
+    margin: 0;
+  }
+  
+  /* Ajustes para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .header h1 {
+      font-size: 1.3rem;
+    }
+  
+    .header p {
+      font-size: 1rem;
+    }
+  }
+  

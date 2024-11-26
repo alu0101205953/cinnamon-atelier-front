@@ -1,0 +1,36 @@
+.parallax-section {
+  position: relative;
+  height: 100vh;            /* Asegura que el contenedor tenga el tamaño de toda la pantalla */
+  overflow: hidden;
+  margin-top: 50px;
+}
+
+.parallax-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
+.parallax-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #555;
+  text-align: center;
+}
+
+.parallax-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.parallax-section p {
+  font-size: 1.2rem;
+}

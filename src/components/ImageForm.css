@@ -1,0 +1,125 @@
+.funny-text {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #8B4513;
+    margin-bottom: 2rem;
+    font-family: 'Avenir Next', sans-serif;
+    font-weight: bold;
+  }
+  
+
+/* Formulario */
+.image-upload-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 40px auto;
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: white; /* Igual al color de fondo del header */
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Avenir Next', sans-serif; /* Coincide con la fuente del header */
+    color: #8B4513; /* Color coherente con el header */
+  }
+  
+  /* Estilos para los campos de texto */
+  .input-field, .file-input {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .input-field {
+    font-family: 'Avenir Next', sans-serif; /* Fuente coherente con el header */
+  }
+  
+  .file-input {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 16px;
+  }
+  
+  /* Botón de envío */
+  .submit-button {
+    font-family: 'Avenir Next', sans-serif;
+    margin-top: 30px;
+    padding: 12px;
+    font-size: 20px;
+    color: white;
+    background-color: #8B4513; /* Coincide con el color del header */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #704214; /* Un tono más oscuro para el hover */
+  }
+  
+  @media (max-width: 768px) {
+    .image-upload-form {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .input-field, .file-input, .submit-button {
+      font-size: 14px;
+    }
+  }
+  
+/* Estilos para el input de tipo file */
+.file-input-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px;
+  width: 100%;  /* Asegura que ocupe el espacio completo del contenedor */
+}
+
+.file-input {
+  font-family: 'Avenir Next', sans-serif;
+  font-size: 20px;
+  color: transparent;  /* Deja transparente el texto */
+  background-color: transparent;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 4px;
+  display: block;  /* Asegura que el input ocupe todo el ancho del contenedor */
+  width: 100%;
+}
+
+.file-input-wrapper::before {
+  content: 'Seleccionar archivo';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #8B4513;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.file-input-wrapper:hover::before {
+  background-color: #704214; /* Un tono más oscuro para el hover */
+}
+
+.file-input:focus + .file-input-wrapper::before {
+  outline: none;
+}
+
+.file-input:valid + .file-input-wrapper::before {
+  background-color: #4CAF50;  /* Verde cuando el archivo es válido */
+}
+
+.file-input:invalid + .file-input-wrapper::before {
+  background-color: #FF6347;  /* Rojo cuando el archivo es inválido */
+}

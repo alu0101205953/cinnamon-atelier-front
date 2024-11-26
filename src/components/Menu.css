@@ -1,0 +1,79 @@
+/* Contenedor principal del menú */
+.menu-container {
+  position: absolute; /* Absoluto para que se alinee en el header */
+  top: 0;
+  left: 0;
+  z-index: 1500;
+}
+
+/* Botón del rodillo */
+#menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 1rem; /* Ajusta según el diseño */
+  top: 1rem; /* Ajusta según el diseño */
+  z-index: 1500; /* Asegura que esté sobre otros elementos */
+}
+
+.rolling-pin {
+  width: 100px; /* Ajusta el tamaño inicial del rodillo */
+  height: auto;
+  transition: transform 1.2s ease; /* Animación suave del giro */
+  display: block; /* Asegura que actúe como elemento bloque */
+  margin: 0 auto; /* Centra horizontalmente si no hay flexbox */
+}
+
+.rolling-pin.rotating {
+  transform: rotate(360deg); /* Girar 180 grados */
+}
+
+/* Menú desplegable */
+.menu {
+  position: fixed; /* Para que ocupe toda la pantalla desde el borde superior */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho */
+  background-color: #8B4513;
+  overflow: hidden; /* Ocultamos contenido que no cabe */
+  max-height: 0; /* Altura inicial cuando está cerrado */
+  transition: max-height 0.5s ease-in-out; /* Transición para desplegar */
+}
+
+.menu.open {
+  max-height: 500px; /* Altura para mostrar los enlaces (ajustar según contenido) */
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 1.3rem;
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.menu a:hover {
+  background-color: #d58c43;
+}
+
+@media (max-width: 1024px) {
+  .rolling-pin {
+    width: 80px; /* Tamaño más pequeño en pantallas medianas */
+  }
+}
+
+@media (max-width: 768px) {
+  .rolling-pin {
+    width: 70px; /* Tamaño aún más pequeño en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .rolling-pin {
+    width: 60px; /* Tamaño mínimo */
+  }
+}
