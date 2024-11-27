@@ -1,0 +1,60 @@
+/* Contenedor principal */
+.carta-container {
+    display: flex;
+    flex-direction: column;  /* Alinea los elementos en columna */
+    justify-content: flex-start;  /* Alinea los elementos en la parte superior */
+    align-items: center;  /* Centra los elementos horizontalmente */
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+    margin-bottom: 30px;
+}
+  
+  /* Estilo para el texto informativo */
+  .funny-text {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #8B4513;
+    margin-bottom: 20px;  /* Espacio entre el texto y el siguiente elemento */
+    font-family: 'Avenir Next', sans-serif;
+    font-weight: bold;
+  }
+
+  /* Contenedor de la información de descarga */
+  .download-info {
+    font-family: 'Avenir Next', sans-serif;
+    text-align: center;
+    color: #8B4513;
+    margin-bottom: 2rem;  /* Espacio entre el iframe y el texto */
+  }
+  
+  /* Estilo para el botón de descarga */
+  .download-button {
+    font-family: 'Avenir Next', sans-serif;
+    padding: 12px 24px;  /* Tamaño más grande para el botón */
+    font-size: 18px;
+    color: white;
+    background-color: #8B4513;  /* Color del fondo */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;  /* Espacio entre el texto y el botón */
+  }
+  
+  .download-button:hover {
+    background-color: #704214;  /* Color cuando se pasa el ratón */
+  }
+  
+  /* Ajustes para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .carta-embed-container {
+      height: 50vh;  /* Menor altura para el iframe en pantallas pequeñas */
+    }
+  
+    .download-button {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  }
+  

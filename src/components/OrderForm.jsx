@@ -10,7 +10,6 @@ const OrderForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
 
-  // Precios de las tartas
   const prices = {
     2: 10,
     6: 20,
@@ -20,32 +19,46 @@ const OrderForm = () => {
     16: 35,
   };
 
-  // Validar si el formulario está completo
   const isFormValid = size && flavor && deliveryDate;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const orderData = {
       size,
       flavor,
       isHeartShaped,
       price: prices[size] + (isHeartShaped && (size === '2' || size === '10') ? 5 : 0),
-      deliveryDate
+      deliveryDate,
     };
-
+  
     try {
       const response = await fetch('http://localhost:5000/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         setOrderNumber(data.order.orderNumber);
         setSuccessMessage('¡Pedido realizado exitosamente!');
         setErrorMessage('');
+  
+        // Construir enlace de correo
+        const subject = `Pedido número ${data.order.orderNumber}`;
+        const body = `Detalles del pedido:
+        - Tamaño: ${size} personas
+        - Sabor: ${flavor.replace(/-/g, ' ')}
+        - Forma: ${isHeartShaped ? 'Con forma de corazón' : 'Normal'}
+        - Precio: ${orderData.price}€
+        - Fecha de entrega: ${deliveryDate}
+        
+        Introduce tu correo aquí y envía este mensaje.`;
+        const mailtoLink = `mailto:thecinnamonatelier@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  
+        // Abrir el cliente de correo automáticamente
+        window.location.href = mailtoLink;
       } else {
         setErrorMessage('Error al realizar el pedido.');
       }
@@ -101,7 +114,7 @@ const OrderForm = () => {
             onChange={(e) => setDeliveryDate(e.target.value)}
             className="input-field"
             required
-            min={today} // Establecer el valor mínimo en la fecha actual
+            min={today}
           />
         </div>
 
@@ -126,7 +139,7 @@ const OrderForm = () => {
           <p><strong>Sabor: </strong>{displayFlavor}</p>
           {isHeartShaped && <p><strong>Forma de corazón (suplemento adicional)</strong></p>}
           <p>
-          <strong>Precio: </strong>{prices[size] + (isHeartShaped && (size === '2' || size === '10') ? 5 : 0)}€
+            <strong>Precio: </strong>{prices[size] + (isHeartShaped && (size === '2' || size === '10') ? 5 : 0)}€
           </p>
           <p><strong>Fecha de entrega:</strong> {deliveryDate}</p>
         </div>

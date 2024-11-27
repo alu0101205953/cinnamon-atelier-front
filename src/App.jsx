@@ -8,6 +8,7 @@ import ImageSlider from "./components/ImageSlider";
 import ImageUpload from "./components/ImageForm";
 import OrderForm from "./components/OrderForm";
 import OrderList from "./components/OrderList";
+import CartaDownload from "./components/DownloadMenu";
 
 const Inicio = () => {
   return (
@@ -23,6 +24,14 @@ const Novedades = () => {
   return (
     <div>
       <h1>Bienvenido a Novedades</h1>
+    </div>
+  );
+};
+
+const Carta = () => {
+  return (
+    <div>
+      <CartaDownload />
     </div>
   );
 };
@@ -64,6 +73,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/novedades" element={<Novedades />} />
+        <Route path="/carta" element={<Carta />} />
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/pendientes" element={<Order />} />
