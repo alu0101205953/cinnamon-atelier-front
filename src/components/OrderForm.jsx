@@ -9,6 +9,9 @@ const OrderForm = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [notes, setNotes] = useState('');
+  const [imageUrl, setImageUrl] = useState('');  // Estado para la URL de la imagen
 
   const prices = {
     2: 10,
@@ -19,32 +22,35 @@ const OrderForm = () => {
     16: 35,
   };
 
-  const isFormValid = size && flavor && deliveryDate;
+  const isFormValid = size && flavor && deliveryDate && phoneNumber; // Asegurarse de que el teléfono esté presente
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const orderData = {
       size,
       flavor,
       isHeartShaped,
       price: prices[size] + (isHeartShaped && (size === '2' || size === '10') ? 5 : 0),
       deliveryDate,
+      phoneNumber,
+      notes,
+      imageUrl,  // Agregar la URL de la imagen al objeto del pedido
     };
-  
+
     try {
       const response = await fetch('http://localhost:5000/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         setOrderNumber(data.order.orderNumber);
         setSuccessMessage('¡Pedido realizado exitosamente!');
         setErrorMessage('');
-  
+
         // Construir enlace de correo
         const subject = `Pedido número ${data.order.orderNumber}`;
         const body = `Detalles del pedido:
@@ -53,10 +59,13 @@ const OrderForm = () => {
         - Forma: ${isHeartShaped ? 'Con forma de corazón' : 'Normal'}
         - Precio: ${orderData.price}€
         - Fecha de entrega: ${deliveryDate}
+        - Teléfono: ${phoneNumber}
+        - Anotaciones: ${notes}
+        - Inspo: ${imageUrl}
         
         Introduce tu correo aquí y envía este mensaje.`;
         const mailtoLink = `mailto:thecinnamonatelier@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  
+
         // Abrir el cliente de correo automáticamente
         window.location.href = mailtoLink;
       } else {
@@ -118,6 +127,19 @@ const OrderForm = () => {
           />
         </div>
 
+        <div>
+          <label>Teléfono (Requerido):</label>
+          <input
+            type="tel"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            className="input-field"
+            required
+            pattern="^\+?[1-9]\d{1,14}$"
+            placeholder="Número de teléfono"
+          />
+        </div>
+
         {(size === '2' || size === '10') && (
           <div className="checkbox-container">
             <input
@@ -133,6 +155,29 @@ const OrderForm = () => {
           </div>
         )}
 
+        {/* Sección de anotaciones opcionales */}
+        <div>
+          <label>Anotaciones (Opcional):</label>
+          <textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            className="input-field"
+            placeholder="Escribe cualquier detalle adicional, ideas para la decoración..."
+          ></textarea>
+        </div>
+
+        {/* Sección de URL de la imagen */}
+        <div>
+          <label>Introduce un link de imagen como idea para decorar tu tarta (Opcional):</label>
+          <input
+            type="text"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            className="input-field"
+            placeholder="Ejemplo: https://link-a-la-imagen.com"
+          />
+        </div>
+
         <div className="order-summary">
           <h3>Resumen del Pedido:</h3>
           <p><strong>Tamaño: </strong>{size} personas</p>
@@ -142,6 +187,8 @@ const OrderForm = () => {
             <strong>Precio: </strong>{prices[size] + (isHeartShaped && (size === '2' || size === '10') ? 5 : 0)}€
           </p>
           <p><strong>Fecha de entrega:</strong> {deliveryDate}</p>
+          <p><strong>Teléfono:</strong> {phoneNumber}</p>
+          {notes && <p><strong>Anotaciones:</strong> {notes}</p>}
         </div>
 
         <button type="submit" className="submit-button" disabled={!isFormValid}>

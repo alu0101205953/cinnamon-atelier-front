@@ -26,42 +26,44 @@
 /* Estilos para los campos de texto */
 .input-field {
     margin-bottom: 15px;
-    margin-left: 15px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Estilo para el contenedor del checkbox */
 .checkbox-container {
     display: flex;
     align-items: center;
-    padding-left: 10px;  /* Espacio a la izquierda */
-    padding-right: 10px; /* Espacio a la derecha */
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 15px;
 }
 
 /* Estilo del checkbox */
 input[type="checkbox"] {
-    display: none;  /* Oculta el checkbox original */
+    display: none;
 }
 
 /* Estilo para el "check" cuando está marcado */
 input[type="checkbox"]:checked + .checkbox-label::before {
-    background-color: #8B4513;  /* Marrón */
-    border: 2px solid #8B4513;  /* Borde marrón */
+    background-color: #8B4513;
+    border: 2px solid #8B4513;
 }
 
 /* Estilo cuando el checkbox está sin marcar */
 input[type="checkbox"]:not(:checked) + .checkbox-label::before {
-    background-color: white;  /* Fondo blanco */
-    border: 2px solid #8B4513;  /* Borde marrón */
+    background-color: white;
+    border: 2px solid #8B4513;
 }
 
 /* Pseudo-elemento que actúa como el checkbox visual */
 .checkbox-label {
     position: relative;
-    padding-left: 40px;  /* Espacio para el "check" */
+    padding-left: 40px;
     cursor: pointer;
 }
 
@@ -74,18 +76,18 @@ input[type="checkbox"]:not(:checked) + .checkbox-label::before {
     width: 20px;
     height: 20px;
     background-color: white;
-    border: 2px solid #8B4513;  /* Borde marrón */
+    border: 2px solid #8B4513;
     border-radius: 4px;
 }
 
 /* Símbolo del "check" */
 .checkbox-label::after {
-    content: "\2713"; /* Símbolo de check */
+    content: "\2713";
     position: absolute;
     left: 4px;
     top: 0;
     font-size: 16px;
-    color: white;  /* Color del "check" */
+    color: white;
     visibility: hidden;
 }
 
@@ -106,6 +108,7 @@ input[type="checkbox"]:checked + .checkbox-label::after {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100%;  /* Hace que el botón ocupe todo el ancho disponible */
 }
 
 .submit-button:hover {
@@ -114,13 +117,46 @@ input[type="checkbox"]:checked + .checkbox-label::after {
 
 .submit-button:disabled {
     background-color: white;
-    color: #8B4513;  /* Marrón */
-    border: 1px solid #8B4513;  /* Borde marrón */
+    color: #8B4513;
+    border: 1px solid #8B4513;
 }
 
 .submit-button:disabled:hover {
-    background-color: white;  /* Mantener el fondo blanco en hover */
+    background-color: white;
     color: #8B4513;
+}
+
+/* Estilo para el campo de texto (anotaciones) */
+textarea.input-field {
+    height: 120px;
+    resize: vertical; /* Permite redimensionar solo en dirección vertical */
+}
+
+/* Estilo para el campo de subida de imagen */
+input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Estilo para la vista previa de la imagen */
+.image-preview {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.image-preview img {
+    width: 80px; /* Miniatura de 80px */
+    height: 80px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    object-fit: cover;
 }
 
 /* Estilos para el resumen del pedido */
@@ -150,5 +186,14 @@ input[type="checkbox"]:checked + .checkbox-label::after {
 
     .input-field, .submit-button {
         font-size: 14px;
+    }
+
+    .submit-button {
+        padding: 10px;
+    }
+
+    .image-preview img {
+        width: 60px; /* Miniaturas más pequeñas en pantallas pequeñas */
+        height: 60px;
     }
 }

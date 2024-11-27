@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './OrderList.css';
 
 const OrderList = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]); // Establecemos el tipo de los pedidos
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -23,16 +23,16 @@ const OrderList = () => {
         setLoading(false);
       }
     };
-  
+
     fetchOrders();
   }, []);
   
-  console.log('Orders state:', orders);
-
   if (loading) return <div>Cargando pedidos...</div>;
   if (error) return <div className="error-message">{error}</div>;
+
+  // Ordenamos los pedidos por la fecha de entrega
   const sortedOrders = [...orders].sort((a, b) => new Date(b.deliveryDate) - new Date(a.deliveryDate));
-  
+
   return (
     <div className="order-list">
       <h2>Lista de Pedidos</h2>
@@ -40,7 +40,7 @@ const OrderList = () => {
         <p>Aún no hay pedidos.</p>
       ) : (
         <ul>
-        {sortedOrders.map((order) => (
+          {sortedOrders.map((order) => (
             <li key={order.orderNumber} className="order-item">
               <p><strong>Número de pedido:</strong> {order.orderNumber}</p>
               <p><strong>Tamaño:</strong> {order.size} personas</p>
@@ -48,6 +48,9 @@ const OrderList = () => {
               {order.isHeartShaped && <p><strong>Forma:</strong> Corazón</p>}
               <p><strong>Precio:</strong> {order.price}€</p>
               <p><strong>Fecha de entrega:</strong> {new Date(order.deliveryDate).toISOString().split('T')[0]}</p>
+              {/* Nuevos campos */}
+              {order.notes && <p><strong>Notas:</strong> {order.notes}</p>}
+              {order.notes && <p><strong>Inspo:</strong> {order.imageUrl}</p>}
             </li>
           ))}
         </ul>
