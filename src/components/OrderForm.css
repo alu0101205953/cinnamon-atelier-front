@@ -1,0 +1,154 @@
+/* Estilos generales */
+.funny-text {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #8B4513;
+    margin-bottom: 2rem;
+    font-family: 'Avenir Next', sans-serif;
+    font-weight: bold;
+}
+
+/* Formulario */
+.image-upload-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 40px auto;
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Avenir Next', sans-serif;
+    color: #8B4513;
+}
+
+/* Estilos para los campos de texto */
+.input-field {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para el contenedor del checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;  /* Espacio a la izquierda */
+    padding-right: 10px; /* Espacio a la derecha */
+}
+
+/* Estilo del checkbox */
+input[type="checkbox"] {
+    display: none;  /* Oculta el checkbox original */
+}
+
+/* Estilo para el "check" cuando está marcado */
+input[type="checkbox"]:checked + .checkbox-label::before {
+    background-color: #8B4513;  /* Marrón */
+    border: 2px solid #8B4513;  /* Borde marrón */
+}
+
+/* Estilo cuando el checkbox está sin marcar */
+input[type="checkbox"]:not(:checked) + .checkbox-label::before {
+    background-color: white;  /* Fondo blanco */
+    border: 2px solid #8B4513;  /* Borde marrón */
+}
+
+/* Pseudo-elemento que actúa como el checkbox visual */
+.checkbox-label {
+    position: relative;
+    padding-left: 40px;  /* Espacio para el "check" */
+    cursor: pointer;
+}
+
+/* Cuadro del checkbox */
+.checkbox-label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 2px solid #8B4513;  /* Borde marrón */
+    border-radius: 4px;
+}
+
+/* Símbolo del "check" */
+.checkbox-label::after {
+    content: "\2713"; /* Símbolo de check */
+    position: absolute;
+    left: 4px;
+    top: 0;
+    font-size: 16px;
+    color: white;  /* Color del "check" */
+    visibility: hidden;
+}
+
+/* Mostrar el check cuando el checkbox está marcado */
+input[type="checkbox"]:checked + .checkbox-label::after {
+    visibility: visible;
+}
+
+/* Estilo para el botón de envío */
+.submit-button {
+    font-family: 'Avenir Next', sans-serif;
+    margin-top: 30px;
+    padding: 12px;
+    font-size: 20px;
+    color: white;
+    background-color: #8B4513;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #704214;
+}
+
+.submit-button:disabled {
+    background-color: white;
+    color: #8B4513;  /* Marrón */
+    border: 1px solid #8B4513;  /* Borde marrón */
+}
+
+.submit-button:disabled:hover {
+    background-color: white;  /* Mantener el fondo blanco en hover */
+    color: #8B4513;
+}
+
+/* Estilos para el resumen del pedido */
+.order-summary {
+    margin-top: 20px;
+    background-color: #ebd0b8;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Estilos para la sección de pago */
+.payment-info {
+    text-align: center;
+    color: #8B4513;
+    margin-top: 20px;
+    background-color: #ebd0b8;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Adaptación para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .image-upload-form {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .input-field, .submit-button {
+        font-size: 14px;
+    }
+}

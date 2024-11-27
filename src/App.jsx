@@ -6,8 +6,8 @@ import Footer from "./components/Footer";
 import Parallax from "./components/Parallax";
 import ImageSlider from "./components/ImageSlider";
 import ImageUpload from "./components/ImageForm";
-import RegisterForm from "./components/RegisterForm";
-import LoginForm from "./components/LoginForm"
+import OrderForm from "./components/OrderForm";
+import OrderList from "./components/OrderList";
 
 const Inicio = () => {
   return (
@@ -27,18 +27,18 @@ const Novedades = () => {
   );
 };
 
-const Register = () => {
+const Pedidos = () => {
   return (
     <div>
-      <RegisterForm/>
+      <OrderForm />
     </div>
   );
 };
 
-const Login = () => {
+const Order = () => {
   return (
     <div>
-      <LoginForm />
+      <OrderList />
     </div>
   );
 };
@@ -49,7 +49,6 @@ const Upload = () => {
   if (!token) {
     //return <Navigate to="/login" />;
   }
-
 
   return (
     <div>
@@ -65,9 +64,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/novedades" element={<Novedades />} />
+        <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/upload" element={<Upload />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/pendientes" element={<Order />} />
       </Routes>
       <Footer />
     </Router>

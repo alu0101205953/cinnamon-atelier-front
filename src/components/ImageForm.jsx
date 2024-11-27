@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import './ImageForm.css'; // Asegúrate de importar el archivo CSS
+import './ImageForm.css';
 
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  // Cambia la imagen cuando se selecciona un archivo
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -17,17 +16,14 @@ const ImageUpload = () => {
     }
   };
 
-  // Cambia el título
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  // Cambia la descripción
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
   };
 
-  // Manejador de la acción de submit (enviar el formulario)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,13 +35,12 @@ const ImageUpload = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("image", image);
+    formData.append("image", image); // Asegúrate de que 'image' sea un archivo
 
     try {
-      // Cambia la URL de la API según tu configuración de backend
       const response = await fetch("http://localhost:5000/api/images", {
         method: "POST",
-        body: formData, // Enviamos el FormData con la imagen
+        body: formData,  // Aquí no se necesita 'Content-Type', ya lo maneja FormData
       });
 
       if (response.ok) {

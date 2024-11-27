@@ -40,7 +40,7 @@ const Menu = () => {
                 <Link to="/novedades">Novedades</Link> {/* Enlace a la página de novedades */}
                 <Link to="/carta">Carta</Link> {/* Enlace a la página de carta */}
                 <Link to="/recetas">Recetas</Link> {/* Enlace a la página de recetas */}
-                <Link to="/contacto">Contacto</Link> {/* Enlace a la página de contacto */}
+                <Link to="/pedidos">¡Haz tu pedido!</Link> {/* Enlace a la página de contacto */}
             </div>
         </div>
     );
