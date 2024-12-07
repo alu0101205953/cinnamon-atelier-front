@@ -9,54 +9,47 @@ import ImageUpload from "./components/ImageForm";
 import OrderForm from "./components/OrderForm";
 import OrderList from "./components/OrderList";
 import CartaDownload from "./components/DownloadMenu";
+import NotFound from "./components/404"; // Importamos directamente el componente NotFound
 
-const Inicio = () => {
-  return (
-    <div>
-      <ImageSlider />
-      <ProductList />
-      <Parallax />
-    </div>
-  );
-};
+const Inicio = () => (
+  <div>
+    <ImageSlider />
+    <ProductList />
+    <Parallax />
+  </div>
+);
 
-const Novedades = () => {
-  return (
-    <div>
-      <h1>Bienvenido a Novedades</h1>
-    </div>
-  );
-};
+const Novedades = () => (
+  <div>
+    <h1>Bienvenido a Novedades</h1>
+  </div>
+);
 
-const Carta = () => {
-  return (
-    <div>
-      <CartaDownload />
-    </div>
-  );
-};
+const Carta = () => (
+  <div>
+    <CartaDownload />
+  </div>
+);
 
-const Pedidos = () => {
-  return (
-    <div>
-      <OrderForm />
-    </div>
-  );
-};
+const Pedidos = () => (
+  <div>
+    <OrderForm />
+  </div>
+);
 
-const Order = () => {
-  return (
-    <div>
-      <OrderList />
-    </div>
-  );
-};
+const Pendientes = () => (
+  <div>
+    <OrderList />
+  </div>
+);
 
 const Upload = () => {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    //return <Navigate to="/login" />;
+    // Implementa lógica para redirigir si es necesario.
+    // Por ejemplo: <Navigate to="/login" />;
+    return <div>Por favor, inicia sesión para acceder.</div>;
   }
 
   return (
@@ -64,23 +57,22 @@ const Upload = () => {
       <ImageUpload />
     </div>
   );
-}
-
-const App = () => {
-  return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/novedades" element={<Novedades />} />
-        <Route path="/carta" element={<Carta />} />
-        <Route path="/pedidos" element={<Pedidos />} />
-        <Route path="/upload" element={<Upload />} />
-        <Route path="/pendientes" element={<Order />} />
-      </Routes>
-      <Footer />
-    </Router>
-  );
 };
+
+const App = () => (
+  <Router>
+    <Header />
+    <Routes>
+      <Route path="/" element={<Inicio />} />
+      <Route path="/novedades" element={<Novedades />} />
+      <Route path="/carta" element={<Carta />} />
+      <Route path="/pedidos" element={<Pedidos />} />
+      <Route path="/upload" element={<Upload />} />
+      <Route path="/pendientes" element={<Pendientes />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    <Footer />
+  </Router>
+);
 
 export default App;

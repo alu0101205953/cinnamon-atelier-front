@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white; /* Fondo general para la página 404 */
+  }
+  
+  .not-found-container {
+    font-family: 'Avenir Next', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Esto asegura que los elementos se apilen verticalmente */
+    min-height: 100vh;
+    text-align: center;
+    color: #8B4513;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+  }
+  
+  .not-found-container h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    display: block; /* Asegura que <h1> esté en una línea separada */
+  }
+  
+  .not-found-container p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    display: block; /* Asegura que <p> esté en una línea separada */
+  }
+  
+  .not-found-container .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #8B4513;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem; /* Añade un margen para separarlo un poco de los demás elementos */
+  }
+  
+  .not-found-container .back-button:hover {
+    background-color: #704214;
+  }
+  
